@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Administración · Social Run San Miguel de Salinas</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--noche:#141B34;--noche-2:#1D2546;--asfalto:#262C44;--rojo:#E1141E;--rojo-osc:#A80D15;--bombilla:#FFC24B;--nieve:#F6F4F0;--niebla:#AEB4CF;--linea:rgba(246,244,240,.14);--verde:#3DBE6E;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;--texto:"Barlow",system-ui,sans-serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--noche);color:var(--nieve);font-family:var(--texto);font-size:16px;line-height:1.5}
+:focus-visible{outline:3px solid var(--bombilla);outline-offset:2px}
+.wrap{width:min(1240px,100% - 2rem);margin-inline:auto}
+.dsp{font-family:var(--display);font-style:italic;font-weight:800;text-transform:uppercase;line-height:.95;margin:0}
+button,.btn{font:inherit;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--display);font-style:italic;font-weight:800;text-transform:uppercase;font-size:1.1rem;padding:.6rem 1.1rem;border-radius:6px;border:0;text-decoration:none;min-height:44px;color:#fff;background:var(--asfalto);box-shadow:inset 0 0 0 1px var(--linea)}
+.btn:hover{background:#30375A}
+.btn-rojo{background:var(--rojo);box-shadow:0 4px 0 var(--rojo-osc)}
+.btn-rojo:hover{background:#F0242E}
+.btn-oro{background:var(--bombilla);color:var(--noche);box-shadow:0 4px 0 #B88620}
+.btn-oro:hover{background:#FFD06E}
+.btn-s{font-size:.95rem;padding:.35rem .7rem;min-height:34px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+input[type=text],input[type=password],input[type=number],input[type=search]{font:inherit;padding:.6rem .8rem;border-radius:6px;border:2px solid #3A4266;background:#10162C;color:var(--nieve);min-height:44px}
+input:focus{outline:none;border-color:var(--bombilla)}
+
+/* Login */
+.login{min-height:100vh;display:grid;place-items:center;padding:1rem}
+.login form{width:min(380px,100%);background:var(--noche-2);padding:2rem;border-radius:14px;border-top:6px solid var(--rojo)}
+.login h1{font-size:2.4rem;margin-bottom:.3rem}
+.login p{color:var(--niebla);margin:0 0 1.2rem}
+.login input{width:100%;margin-bottom:1rem}
+.login .btn{width:100%}
+.msg-err{color:#FF8D93;font-weight:600;min-height:1.4em;margin:.2rem 0 .8rem}
+
+/* Cabecera */
+header{border-bottom:1px solid var(--linea);background:var(--noche-2)}
+header .wrap{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;padding:1rem 0}
+header h1{font-size:1.8rem}
+header h1 b{color:var(--rojo)}
+.tabs{display:flex;gap:.4rem}
+.tab{background:transparent;border:0;color:var(--niebla);font-family:var(--display);font-style:italic;font-weight:800;text-transform:uppercase;font-size:1.25rem;padding:.4rem .9rem;border-bottom:3px solid transparent}
+.tab[aria-selected=true]{color:var(--nieve);border-color:var(--rojo)}
+
+/* Resumen */
+.resumen{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+@media (max-width:900px){.resumen{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.resumen{grid-template-columns:repeat(2,1fr)}}
+.resumen div{background:var(--noche);padding:1rem 1.1rem}
+.resumen b{display:block;font-family:var(--display);font-style:italic;font-weight:800;font-size:2.3rem;line-height:1;font-variant-numeric:tabular-nums}
+.resumen span{color:var(--niebla);font-size:.9rem;font-weight:600}
+.resumen .grande b{color:var(--bombilla)}
+
+.config{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;background:var(--noche-2);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.5rem}
+.config label{font-weight:600;display:flex;align-items:center;gap:.6rem}
+.config input[type=number]{width:96px}
+.estado-ins{font-weight:700;padding:.25rem .7rem;border-radius:99px;font-size:.9rem}
+.estado-ins.on{background:rgba(61,190,110,.18);color:#7FE3A5}
+.estado-ins.off{background:rgba(225,20,30,.2);color:#FF9AA0}
+
+/* Tabla */
+.barra{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.barra input[type=search]{flex:1;min-width:220px;max-width:420px}
+.tabla-wrap{overflow-x:auto;border:1px solid var(--linea);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:900px}
+th,td{padding:.6rem .7rem;text-align:left;border-bottom:1px solid var(--linea);vertical-align:middle}
+th{background:var(--noche-2);color:var(--niebla);font-weight:700;font-size:.85rem;position:sticky;top:0}
+tr:hover td{background:rgba(255,255,255,.03)}
+td.num{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.2rem;color:var(--bombilla)}
+.chip{display:inline-block;padding:.1rem .55rem;border-radius:99px;font-size:.82rem;font-weight:700;background:#2C3458}
+.chip.paseo{background:#28465A;color:#9FD9F5}.chip.trote{background:#4A3E1E;color:#FFD486}.chip.ritmo{background:#5A1E26;color:#FFA3AA}
+.chip.no{background:#5A1E26;color:#FFA3AA}.chip.si{background:#1F4A33;color:#8BE6AE}
+.presente{width:24px;height:24px;accent-color:var(--verde);cursor:pointer}
+.vacio{padding:2.5rem;text-align:center;color:var(--niebla)}
+.borrar{background:transparent;border:0;color:#FF8D93;font-weight:600;text-decoration:underline;padding:.3rem}
+
+/* Sorteo */
+.sorteo-panel{display:grid;grid-template-columns:340px 1fr;gap:2rem;margin:1.5rem 0 3rem}
+@media (max-width:900px){.sorteo-panel{grid-template-columns:1fr}}
+.ajustes{background:var(--noche-2);border-radius:12px;padding:1.3rem;align-self:start}
+.ajustes h2{font-size:1.8rem;margin-bottom:.8rem}
+.ajustes p{color:var(--niebla);margin:.2rem 0 1rem;font-size:.95rem}
+.ajustes label{display:flex;gap:.6rem;align-items:center;font-weight:600;margin-bottom:.8rem}
+.ajustes input[type=checkbox]{width:22px;height:22px;accent-color:var(--rojo)}
+.ajustes .btn{width:100%;margin-top:.5rem}
+.bombo{background:radial-gradient(120% 90% at 50% 0%, #2B3266, var(--noche) 70%);border:1px solid var(--linea);border-radius:14px;padding:1.5rem;min-height:520px;display:flex;flex-direction:column}
+.pantalla{text-align:center;padding:1.5rem 1rem 2rem;border-bottom:1px dashed var(--linea);margin-bottom:1.5rem}
+.pantalla small{color:var(--niebla);font-weight:700;font-size:1rem}
+.pantalla .nombre{font-family:var(--display);font-style:italic;font-weight:900;text-transform:uppercase;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1;min-height:1.1em;margin-top:.4rem;overflow-wrap:anywhere}
+.pantalla .nombre.final{color:var(--bombilla);text-shadow:0 0 30px rgba(255,194,75,.45)}
+.dorsales{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+@media (max-width:620px){.dorsales{grid-template-columns:repeat(2,1fr)}}
+.dorsal{background:#fff;color:var(--noche);border-radius:6px;padding:.7rem .5rem .6rem;text-align:center;position:relative;box-shadow:0 10px 22px rgba(0,0,0,.35);transform:rotate(var(--rot,0deg))}
+.dorsal::before,.dorsal::after{content:"";position:absolute;top:7px;width:8px;height:8px;border-radius:50%;background:#C9CBD6}
+.dorsal::before{left:8px}.dorsal::after{right:8px}
+.dorsal .ev{font-size:.66rem;font-weight:700;color:var(--rojo);display:block;margin-top:.2rem}
+.dorsal b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:2.4rem;line-height:1}
+.dorsal .nom{display:block;font-weight:700;font-size:.85rem;line-height:1.2;min-height:2.4em}
+.dorsal .tel{display:block;font-size:.78rem;color:#4A5070}
+.dorsal .sust{margin-top:.4rem;background:transparent;border:0;color:var(--rojo-osc);font-size:.78rem;font-weight:700;text-decoration:underline}
+.dorsal.vacio{background:rgba(255,255,255,.06);color:var(--niebla);box-shadow:none;border:2px dashed var(--linea)}
+.dorsal.vacio::before,.dorsal.vacio::after{display:none}
+.dorsal.vacio .ev{color:var(--niebla)}
+.dorsal.entra{animation:entra .5s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes entra{from{transform:scale(.4) rotate(-20deg);opacity:0}}
+.suplentes{margin-top:1.5rem;color:var(--niebla)}
+.suplentes ol{margin:.4rem 0 0;padding-left:1.4rem;color:var(--nieve)}
+.acciones-sorteo{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:auto;padding-top:1.5rem}
+.publicado{color:#7FE3A5;font-weight:700;align-self:center}
+@media (prefers-reduced-motion:reduce){.dorsal.entra{animation:none}}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%);background:var(--nieve);color:var(--noche);padding:.7rem 1.1rem;border-radius:8px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:50}
+.toast[hidden]{display:none}
+
+@media print{
+  body{background:#fff;color:#000}
+  header,.resumen,.config,.ajustes,.acciones-sorteo,.pantalla,#vista-lista,.dorsal .sust{display:none!important}
+  #vista-sorteo{display:block!important}
+  .bombo{background:#fff;border:0;min-height:0}
+  .dorsal{box-shadow:none;border:1px solid #999;transform:none}
+  .suplentes,.suplentes ol{color:#000}
+  .print-t{display:block!important;color:#000}
+}
+.print-t{display:none;font-family:var(--display);font-style:italic;font-size:2rem;margin:0 0 1rem}
+</style>
+</head>
+<body>
+
+<section class="login" id="login">
+  <form id="login-form">
+    <h1 class="dsp">Social Run</h1>
+    <p>Panel de administración</p>
+    <label for="pass" style="font-weight:600;display:block;margin-bottom:.3rem">Contraseña</label>
+    <input id="pass" type="password" autocomplete="current-password" required>
+    <div class="msg-err" id="login-err" role="alert"></div>
+    <button class="btn btn-rojo" type="submit">Entrar</button>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header>
+    <div class="wrap">
+      <h1 class="dsp">Social <b>Run</b> · Admin</h1>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-vista="lista">Inscritos</button>
+        <button class="tab" role="tab" aria-selected="false" data-vista="sorteo">Sorteo de dorsales</button>
+      </div>
+      <div style="display:flex;gap:.6rem">
+        <a class="btn btn-s" href="/" target="_blank">Ver web</a>
+        <button class="btn btn-s" id="salir">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="resumen" id="resumen"></div>
+
+    <div id="vista-lista">
+      <div class="config">
+        <label for="max">Plazas máximas <input type="number" id="max" min="1" max="2000"></label>
+        <button class="btn btn-s" id="guardar-max">Guardar plazas</button>
+        <span class="estado-ins" id="estado-ins"></span>
+        <button class="btn btn-s" id="toggle-ins"></button>
+      </div>
+      <div class="barra">
+        <input type="search" id="buscar" placeholder="Buscar por nombre, apellidos o teléfono" aria-label="Buscar inscritos">
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn-s" id="refrescar">Actualizar</button>
+          <button class="btn btn-s btn-oro" id="csv">Descargar Excel (CSV)</button>
+        </div>
+      </div>
+      <p style="color:var(--niebla);margin:0 0 .8rem;font-size:.95rem">Marca la casilla <b>Asistió</b> el día de la Social Run para sortear solo entre quienes han venido.</p>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Nº</th><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Teléfono</th><th>Ritmo</th><th>Imagen</th><th>Autorización</th><th>Asistió</th><th>Inscripción</th><th></th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="vista-sorteo" hidden>
+      <div class="sorteo-panel">
+        <div class="ajustes">
+          <h2 class="dsp">Sorteo</h2>
+          <p>10 dorsales para la 5K Carrera / 2,5K Marcha de Navidad Solidaria del 20 de diciembre de 2026.</p>
+          <label><input type="checkbox" id="solo-presentes"> Solo entre quienes asistieron</label>
+          <label><input type="checkbox" id="con-suplentes" checked> Sacar 5 suplentes</label>
+          <p id="participan" style="color:var(--nieve);font-weight:600"></p>
+          <button class="btn btn-rojo" id="sortear">Sortear 10 dorsales</button>
+        </div>
+        <div class="bombo">
+          <h2 class="print-t">Ganadores · Sorteo de dorsales Social Run 2026</h2>
+          <div class="pantalla" aria-live="polite">
+            <small id="pantalla-t">Pulsa «Sortear» cuando acabe la Social Run</small>
+            <div class="nombre" id="pantalla-n">&nbsp;</div>
+          </div>
+          <div class="dorsales" id="dorsales"></div>
+          <div class="suplentes" id="suplentes" hidden><b>Suplentes</b> (por orden)<ol id="sup-lista"></ol></div>
+          <div class="acciones-sorteo" id="acciones" hidden>
+            <button class="btn btn-oro" id="publicar">Publicar ganadores en la web</button>
+            <button class="btn" id="imprimir">Imprimir</button>
+            <button class="btn" id="repetir">Repetir sorteo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(() => {
+  const API = "/api/admin";
+  const NIVEL = { paseo: "Paseo", trote: "Trote", ritmo: "Ritmo" };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let clave = sessionStorage.getItem("sr-admin") || "";
+  let datos = { config: { max: 100, abierto: true }, inscritos: [], sorteo: null };
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  function toast(t) { const el = $("toast"); el.textContent = t; el.hidden = false; clearTimeout(el._t); el._t = setTimeout(() => el.hidden = true, 2600); }
+
+  async function api(action, body, method) {
+    const r = await fetch(`${API}?action=${action}`, {
+      method: method || (body ? "POST" : "GET"),
+      headers: { "x-admin-key": clave, ...(body ? { "content-type": "application/json" } : {}) },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (r.status === 401) { salir(); throw new Error("Contraseña incorrecta."); }
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || "Error del servidor.");
+    return j;
+  }
+
+  /* ---- Login ---- */
+  $("login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clave = $("pass").value; $("login-err").textContent = "";
+    try { await cargar(); sessionStorage.setItem("sr-admin", clave); entrar(); }
+    catch (err) { $("login-err").textContent = err.message; }
+  });
+  function entrar() { $("login").hidden = true; $("app").hidden = false; }
+  function salir() { sessionStorage.removeItem("sr-admin"); clave = ""; $("app").hidden = true; $("login").hidden = false; }
+  $("salir").addEventListener("click", salir);
+  if (clave) cargar().then(entrar).catch(() => {});
+
+  /* ---- Pestañas ---- */
+  document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach((x) => x.setAttribute("aria-selected", x === t));
+    $("vista-lista").hidden = t.dataset.vista !== "lista";
+    $("vista-sorteo").hidden = t.dataset.vista !== "sorteo";
+  }));
+
+  async function cargar() {
+    datos = await api("list");
+    pintar();
+  }
+
+  function pintar() {
+    const L = datos.inscritos, c = datos.config;
+    const pres = L.filter((i) => i.presente).length;
+    const cnt = (n) => L.filter((i) => i.nivel === n).length;
+    $("resumen").innerHTML = `
+      <div class="grande"><b>${L.length}<small style="font-size:.5em;color:var(--niebla)"> / ${c.max}</small></b><span>Inscritos</span></div>
+      <div><b>${pres}</b><span>Asistieron</span></div>
+      <div><b>${L.filter((i) => i.menor).length}</b><span>Menores</span></div>
+      <div><b style="font-size:1.7rem">${cnt("paseo")} / ${cnt("trote")} / ${cnt("ritmo")}</b><span>Paseo · Trote · Ritmo</span></div>
+      <div><b>${L.filter((i) => i.imagen === "no").length}</b><span>Sin permiso de imagen</span></div>
+      <div><b>${Math.max(c.max - L.length, 0)}</b><span>Plazas libres</span></div>`;
+    $("max").value = c.max;
+    const abierto = c.abierto && L.length < c.max;
+    $("estado-ins").className = "estado-ins " + (abierto ? "on" : "off");
+    $("estado-ins").textContent = abierto ? "Inscripción abierta" : (c.abierto ? "Plazas completas" : "Inscripción cerrada");
+    $("toggle-ins").textContent = c.abierto ? "Cerrar inscripción" : "Abrir inscripción";
+    pintarTabla();
+    pintarSorteo();
+  }
+
+  function pintarTabla() {
+    const q = $("buscar").value.trim().toLowerCase();
+    const L = datos.inscritos.filter((i) => !q || `${i.nombre} ${i.apellidos} ${i.telefono}`.toLowerCase().includes(q));
+    if (!L.length) { $("tbody").innerHTML = `<tr><td colspan="11" class="vacio">${q ? "Nadie coincide con la búsqueda." : "Todavía no hay inscripciones. Comparte la web para que se vaya llenando la guirnalda."}</td></tr>`; return; }
+    $("tbody").innerHTML = L.map((i) => `<tr data-id="${esc(i.id)}">
+      <td class="num">${i.numero}</td><td>${esc(i.nombre)}</td><td>${esc(i.apellidos)}</td>
+      <td>${i.edad}${i.menor ? ' <span class="chip">menor</span>' : ""}</td>
+      <td><a href="tel:${esc(i.telefono)}" style="color:inherit">${esc(i.telefono)}</a></td>
+      <td><span class="chip ${esc(i.nivel)}">${NIVEL[i.nivel] || esc(i.nivel)}</span></td>
+      <td><span class="chip ${i.imagen === "si" ? "si" : "no"}">${i.imagen === "si" ? "Sí" : "No"}</span></td>
+      <td>${i.menor ? `<button class="btn btn-s ver-pdf">Ver PDF</button>` : "—"}</td>
+      <td><input type="checkbox" class="presente" ${i.presente ? "checked" : ""} aria-label="Asistió ${esc(i.nombre)}"></td>
+      <td style="color:var(--niebla);font-size:.85rem">${new Date(i.fecha).toLocaleString("es-ES", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}</td>
+      <td><button class="borrar">Eliminar</button></td></tr>`).join("");
+  }
+  $("buscar").addEventListener("input", pintarTabla);
+  $("refrescar").addEventListener("click", () => cargar().then(() => toast("Lista actualizada")).catch((e) => toast(e.message)));
+
+  $("tbody").addEventListener("click", async (e) => {
+    const tr = e.target.closest("tr[data-id]"); if (!tr) return;
+    const id = tr.dataset.id, reg = datos.inscritos.find((i) => i.id === id);
+    if (e.target.classList.contains("ver-pdf")) {
+      const w = window.open("", "_blank");
+      try {
+        const r = await fetch(`${API}?action=pdf&id=${encodeURIComponent(id)}`, { headers: { "x-admin-key": clave } });
+        if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || "No se encuentra el PDF.");
+        const url = URL.createObjectURL(await r.blob());
+        if (w) w.location = url; else location.href = url;
+      } catch (err) { if (w) w.close(); toast(err.message); }
+    }
+    if (e.target.classList.contains("borrar")) {
+      if (!confirm(`¿Eliminar la inscripción de ${reg.nombre} ${reg.apellidos}? No se puede deshacer.`)) return;
+      try { await api("delete", { id }); await cargar(); toast("Inscripción eliminada"); } catch (err) { toast(err.message); }
+    }
+  });
+  $("tbody").addEventListener("change", async (e) => {
+    if (!e.target.classList.contains("presente")) return;
+    const id = e.target.closest("tr").dataset.id, val = e.target.checked;
+    try { await api("presente", { id, presente: val }); datos.inscritos.find((i) => i.id === id).presente = val; pintar(); }
+    catch (err) { e.target.checked = !val; toast(err.message); }
+  });
+
+  $("guardar-max").addEventListener("click", async () => {
+    try { const r = await api("config", { max: $("max").value }); datos.config = r.config; pintar(); toast("Plazas guardadas"); } catch (err) { toast(err.message); }
+  });
+  $("toggle-ins").addEventListener("click", async () => {
+    try { const r = await api("config", { abierto: !datos.config.abierto }); datos.config = r.config; pintar(); toast(r.config.abierto ? "Inscripción abierta" : "Inscripción cerrada"); } catch (err) { toast(err.message); }
+  });
+
+  /* ---- CSV ---- */
+  $("csv").addEventListener("click", () => {
+    const cab = ["Nº", "Nombre", "Apellidos", "Edad", "Menor", "Teléfono", "Ritmo", "Consentimiento imagen", "Protección de datos", "Autorización PDF", "Asistió", "Fecha inscripción"];
+    const filas = datos.inscritos.map((i) => [i.numero, i.nombre, i.apellidos, i.edad, i.menor ? "Sí" : "No", i.telefono, NIVEL[i.nivel] || i.nivel, i.imagen === "si" ? "Sí" : "No", "Aceptada", i.pdf ? i.pdf : "", i.presente ? "Sí" : "No", new Date(i.fecha).toLocaleString("es-ES")]);
+    const csv = [cab, ...filas].map((f) => f.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(";")).join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" }));
+    a.download = `inscritos-social-run-${new Date().toISOString().slice(0, 10)}.csv`; a.click();
+  });
+
+  /* ---- Sorteo ---- */
+  const N_DORSALES = 10, N_SUPLENTES = 5;
+  const rots = [-4, 3, -2, 5, -3, 2, -5, 3, -1, 4];
+  const azar = (n) => { const a = new Uint32Array(1); const lim = Math.floor(0xFFFFFFFF / n) * n; let x; do { crypto.getRandomValues(a); x = a[0]; } while (x >= lim); return x % n; };
+  const ficha = (i) => ({ id: i.id, numero: i.numero, nombre: i.nombre, apellidos: i.apellidos, inicial: (i.apellidos || "").trim().charAt(0).toUpperCase(), telefono: i.telefono, edad: i.edad });
+  const bolsa = () => { const solo = $("solo-presentes").checked; return datos.inscritos.filter((i) => !solo || i.presente); };
+
+  function actualizarParticipan() {
+    const pres = datos.inscritos.filter((i) => i.presente).length;
+    if (!$("solo-presentes")._tocado) $("solo-presentes").checked = pres > 0;
+    $("participan").textContent = `Entran en el sorteo: ${bolsa().length} personas`;
+  }
+  $("solo-presentes").addEventListener("change", (e) => { e.target._tocado = true; actualizarParticipan(); });
+
+  function pintarSorteo() {
+    actualizarParticipan();
+    const s = datos.sorteo;
+    $("sortear").disabled = !!s;
+    $("sortear").textContent = s ? "Sorteo ya realizado" : "Sortear 10 dorsales";
+    pintarDorsales(s ? s.ganadores : [], false);
+    $("suplentes").hidden = !(s && s.suplentes && s.suplentes.length);
+    $("sup-lista").innerHTML = s && s.suplentes ? s.suplentes.map((x) => `<li>Nº ${x.numero} · ${esc(x.nombre)} ${esc(x.apellidos)} · ${esc(x.telefono)}</li>`).join("") : "";
+    $("acciones").hidden = !s;
+    if (s) {
+      $("pantalla-t").textContent = `Sorteo realizado el ${new Date(s.fecha).toLocaleString("es-ES", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" })}`;
+      if (!$("pantalla-n").classList.contains("final")) $("pantalla-n").innerHTML = "&nbsp;";
+      $("publicar").textContent = s.publicado ? "Retirar ganadores de la web" : "Publicar ganadores en la web";
+    } else {
+      $("pantalla-t").textContent = "Pulsa «Sortear» cuando acabe la Social Run";
+      $("pantalla-n").innerHTML = "&nbsp;"; $("pantalla-n").classList.remove("final");
+    }
+  }
+
+  function pintarDorsales(ganadores, ultimoEntra) {
+    $("dorsales").innerHTML = Array.from({ length: N_DORSALES }, (_, k) => {
+      const g = ganadores[k];
+      if (!g) return `<div class="dorsal vacio"><span class="ev">Navidad 2026</span><b>${String(k + 1).padStart(2, "0")}</b><span class="nom">—</span></div>`;
+      return `<div class="dorsal${ultimoEntra && k === ganadores.length - 1 ? " entra" : ""}" style="--rot:${rots[k]}deg"><span class="ev">Navidad 2026</span><b>${String(k + 1).padStart(2, "0")}</b><span class="nom">${esc(g.nombre)} ${esc(g.apellidos)}</span><span class="tel">Nº ${g.numero} · ${esc(g.telefono)}</span>${datos.sorteo ? `<button class="sust" data-k="${k}">No está: sustituir</button>` : ""}</div>`;
+    }).join("");
+  }
+
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  async function ruleta(pool, elegido) {
+    const el = $("pantalla-n"); el.classList.remove("final");
+    if (!reduce) {
+      const pasos = 14;
+      for (let p = 0; p < pasos; p++) {
+        const x = pool[azar(pool.length)];
+        el.textContent = `${x.nombre} ${x.apellidos}`;
+        await espera(40 + p * p * 0.9);
+      }
+    }
+    el.textContent = `${elegido.nombre} ${elegido.apellidos}`; el.classList.add("final");
+  }
+
+  $("sortear").addEventListener("click", async () => {
+    const pool = bolsa().slice();
+    if (!pool.length) return toast("No hay participantes para sortear.");
+    const nGan = Math.min(N_DORSALES, pool.length);
+    const nSup = $("con-suplentes").checked ? Math.min(N_SUPLENTES, pool.length - nGan) : 0;
+    if (!confirm(`Se van a sortear ${nGan} dorsales${nSup ? ` y ${nSup} suplentes` : ""} entre ${pool.length} personas. ¿Empezamos?`)) return;
+    $("sortear").disabled = true;
+    const restantes = pool.slice(), ganadores = [], suplentes = [];
+    for (let k = 0; k < nGan; k++) {
+      $("pantalla-t").textContent = `Dorsal ${k + 1} de ${nGan}`;
+      const elegido = restantes.splice(azar(restantes.length), 1)[0];
+      await ruleta(pool, elegido);
+      ganadores.push(ficha(elegido));
+      pintarDorsales(ganadores, true);
+      await espera(reduce ? 200 : 700);
+    }
+    for (let k = 0; k < nSup; k++) suplentes.push(ficha(restantes.splice(azar(restantes.length), 1)[0]));
+    const sorteo = { fecha: new Date().toISOString(), soloPresentes: $("solo-presentes").checked, participantes: pool.length, ganadores, suplentes, publicado: false };
+    try { await api("sorteo", { sorteo }); datos.sorteo = sorteo; $("pantalla-t").textContent = "¡Sorteo completado!"; pintarSorteo(); toast("Sorteo guardado"); }
+    catch (err) { toast("No se pudo guardar: " + err.message); $("sortear").disabled = false; }
+  });
+
+  $("dorsales").addEventListener("click", async (e) => {
+    if (!e.target.classList.contains("sust")) return;
+    const k = +e.target.dataset.k, s = datos.sorteo, g = s.ganadores[k];
+    let nuevo;
+    if (s.suplentes && s.suplentes.length) nuevo = s.suplentes.shift();
+    else {
+      const usados = new Set([...s.ganadores.map((x) => x.id), ...(s.descartados || []).map((x) => x.id)]);
+      const libres = bolsa().filter((i) => !usados.has(i.id));
+      if (!libres.length) return toast("No quedan participantes para sustituir.");
+      nuevo = ficha(libres[azar(libres.length)]);
+    }
+    if (!confirm(`¿Sustituir a ${g.nombre} ${g.apellidos} por ${nuevo.nombre} ${nuevo.apellidos}?`)) { if (s.suplentes) s.suplentes.unshift(nuevo); return; }
+    s.descartados = [...(s.descartados || []), g];
+    s.ganadores[k] = nuevo;
+    try { await api("sorteo", { sorteo: s }); pintarSorteo(); $("pantalla-t").textContent = `Dorsal ${k + 1}`; $("pantalla-n").textContent = `${nuevo.nombre} ${nuevo.apellidos}`; $("pantalla-n").classList.add("final"); toast("Ganador sustituido"); }
+    catch (err) { toast(err.message); }
+  });
+
+  $("publicar").addEventListener("click", async () => {
+    const s = datos.sorteo; if (!s) return; s.publicado = !s.publicado;
+    try { await api("sorteo", { sorteo: s }); pintarSorteo(); toast(s.publicado ? "Ganadores publicados (nombre e inicial)" : "Ganadores retirados de la web"); }
+    catch (err) { s.publicado = !s.publicado; toast(err.message); }
+  });
+  $("imprimir").addEventListener("click", () => print());
+  $("repetir").addEventListener("click", async () => {
+    if (!confirm("Se borrará el resultado actual del sorteo. ¿Seguro que quieres repetirlo?")) return;
+    try { await api("reset-sorteo", {}); datos.sorteo = null; pintarSorteo(); toast("Sorteo borrado"); } catch (err) { toast(err.message); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Social Run San Miguel de Salinas · 19 de noviembre, 19:30 h</title>
+<meta name="description" content="Vuelta de reconocimiento al recorrido de la Carrera Solidaria de Navidad 2026. Jueves 19 de noviembre a las 19:30 h desde el Ayuntamiento. Gratis, para cualquier ritmo, con sorteo de 10 dorsales.">
+<meta property="og:title" content="Social Run San Miguel de Salinas · 19 nov, 19:30 h">
+<meta property="og:description" content="Corre o camina el recorrido de la Carrera Solidaria de Navidad con nosotros. Al terminar sorteamos 10 dorsales entre los inscritos.">
+<meta property="og:image" content="assets/cartel-social-run.jpg">
+<meta name="theme-color" content="#141B34">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noche:#141B34;
+  --noche-2:#1D2546;
+  --crepusculo:#3A3B6E;
+  --asfalto:#262C44;
+  --rojo:#E1141E;
+  --rojo-osc:#A80D15;
+  --bombilla:#FFC24B;
+  --nieve:#F6F4F0;
+  --niebla:#AEB4CF;
+  --linea:rgba(246,244,240,.14);
+  --display:"Barlow Condensed", "Arial Narrow", sans-serif;
+  --texto:"Barlow", system-ui, sans-serif;
+  --r-s:6px; --r-m:14px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--noche);color:var(--nieve);font-family:var(--texto);font-size:1.0625rem;line-height:1.55;-webkit-tap-highlight-color:transparent}
+img{max-width:100%;display:block}
+[id]{scroll-margin-top:72px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--bombilla);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1160px,100% - 2.5rem);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Display type: slanted, condensed — como el cartel */
+.dsp{font-family:var(--display);font-style:italic;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.005em;margin:0}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--display);font-style:italic;font-weight:800;font-size:1.25rem;text-transform:uppercase;letter-spacing:.01em;
+  padding:.85rem 1.4rem .8rem;border-radius:var(--r-s);text-decoration:none;border:0;cursor:pointer;transform:skewX(-8deg);transition:transform .15s ease, background-color .15s ease, box-shadow .15s ease;min-height:48px}
+.btn > *{transform:skewX(8deg)}
+.btn:active{transform:skewX(-8deg) scale(.97)}
+.btn-rojo{background:var(--rojo);color:#fff;box-shadow:0 6px 0 var(--rojo-osc)}
+.btn-rojo:hover{background:#F0242E}
+.btn-strava{background:#FC5200;color:#fff;box-shadow:0 6px 0 #B83B00}
+.btn-strava:hover{background:#FF6418}
+.btn-claro{background:var(--nieve);color:var(--noche);box-shadow:0 6px 0 #B9B6AF}
+.btn-linea{background:transparent;color:var(--nieve);box-shadow:inset 0 0 0 2px var(--linea)}
+.btn-linea:hover{box-shadow:inset 0 0 0 2px var(--nieve)}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(20,27,52,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.nav .wrap{display:flex;align-items:center;gap:1.25rem;min-height:62px}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;margin-right:auto}
+.marca img{width:34px;height:34px;object-fit:contain;background:#fff;border-radius:50%;padding:3px}
+.marca span{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1}
+.marca b{color:var(--rojo)}
+.nav-links{display:flex;gap:1.3rem;font-weight:600;font-size:.98rem}
+.nav-links a{text-decoration:none;opacity:.82}
+.nav-links a:hover{opacity:1}
+.nav .btn{font-size:1.05rem;padding:.55rem 1rem .5rem;min-height:42px;box-shadow:0 4px 0 var(--rojo-osc)}
+@media (max-width:820px){.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 60% at 70% 100%, rgba(225,120,110,.30), transparent 60%),
+    linear-gradient(180deg, var(--noche) 0%, var(--noche-2) 45%, var(--crepusculo) 100%);
+  padding:clamp(2.5rem,6vw,4.5rem) 0 0}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:2.5rem;align-items:center}
+.hero-grid > *{min-width:0}
+.hero-cartel{margin:0 0 2rem;justify-self:end;width:min(340px,100%);transform:rotate(3deg);position:relative}
+.hero-cartel img{width:100%;height:auto;border-radius:10px;box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 6px rgba(246,244,240,.08)}
+.hero-cartel::before{content:"";position:absolute;top:-12px;left:50%;width:70px;height:24px;margin-left:-35px;background:rgba(246,244,240,.55);transform:rotate(-4deg);border-radius:2px;z-index:1}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-cartel{display:none}}
+.hero-fecha{display:inline-flex;align-items:stretch;transform:skewX(-10deg);margin-bottom:1.4rem;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.hero-fecha > span{transform:skewX(10deg);display:block}
+.hero-fecha .dia{background:var(--rojo);padding:.45rem 1rem .35rem;font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(1.3rem,3vw,1.7rem);text-transform:uppercase;line-height:1}
+.hero-fecha .dia-w{background:var(--rojo)}
+.hero-fecha .hora-w{background:var(--nieve);color:var(--noche)}
+.hero-fecha .hora{padding:.45rem 1rem .35rem;font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(1.3rem,3vw,1.7rem);line-height:1}
+.hero h1{font-size:clamp(4.2rem,15vw,10.5rem);text-shadow:0 6px 40px rgba(0,0,0,.35)}
+.hero h1 .l2{display:block;color:var(--rojo);-webkit-text-stroke:0;margin-left:.06em}
+.hero-sub{font-family:var(--display);font-style:italic;font-weight:700;font-size:clamp(1.4rem,3.4vw,2.2rem);text-transform:uppercase;line-height:1.05;margin:.5rem 0 1.2rem;color:var(--nieve)}
+.hero-p{max-width:34em;color:#DCDDEA;font-size:1.12rem;margin:0 0 1.8rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:1rem 1.1rem;margin-bottom:2rem}
+.hero-lugar{display:flex;gap:.6rem;align-items:flex-start;color:var(--niebla);font-weight:500;margin:0 0 1rem}
+.hero-lugar svg{width:20px;height:20px;flex:none;color:var(--rojo);margin-top:3px}
+
+.cuenta{border-left:3px solid var(--rojo);padding:.2rem 0 .2rem 1.2rem;margin-bottom:2.2rem}
+.cuenta p{margin:0 0 .5rem;color:var(--niebla);font-weight:600}
+.cuenta-num{display:flex;gap:1.1rem}
+.cuenta-num div{min-width:3.2ch}
+.cuenta-num b{display:block;font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(2.6rem,6vw,3.6rem);line-height:.95;font-variant-numeric:tabular-nums}
+.cuenta-num small{color:var(--niebla);font-size:.86rem;font-weight:600}
+
+/* Calle: paso de cebra como suelo del hero */
+.calle{position:relative;margin-top:1rem;height:74px;background:var(--asfalto);overflow:hidden}
+.calle::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;
+  background:repeating-linear-gradient(90deg,rgba(246,244,240,.75) 0 46px,transparent 46px 92px)}
+.calle .corredor{position:absolute;bottom:10px;left:-60px;width:44px;height:44px;color:var(--nieve);animation:correr 14s linear infinite}
+@keyframes correr{to{left:calc(100% + 60px)}}
+@media (prefers-reduced-motion:reduce){.calle .corredor{animation:none;left:8%}}
+
+/* Guirnalda de plazas — el elemento firma */
+.plazas{background:var(--noche);padding:clamp(2.5rem,5vw,4rem) 0 clamp(2rem,4vw,3rem);border-bottom:1px solid var(--linea)}
+.plazas-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem 2rem;margin-bottom:1.2rem}
+.plazas h2{font-size:clamp(2rem,5vw,3.2rem)}
+.plazas-cifra{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(2.6rem,7vw,4.4rem);line-height:.9;font-variant-numeric:tabular-nums}
+.plazas-cifra span{color:var(--bombilla)}
+.plazas-cifra small{font-size:.42em;color:var(--niebla);font-weight:700;margin-left:.3rem}
+.plazas-txt{color:var(--niebla);margin:.4rem 0 0;max-width:38em}
+#guirnalda{width:100%;display:block;overflow:visible}
+#guirnalda .cable{fill:none;stroke:#3C4466;stroke-width:1.6}
+#guirnalda .casq{fill:#5A6288}
+#guirnalda .bulbo{fill:#2B3252;stroke:#434B72;stroke-width:1;transition:fill .35s ease}
+#guirnalda .on .bulbo{stroke:none}
+#guirnalda .on.c0 .bulbo{fill:var(--rojo);filter:url(#brillo-r)}
+#guirnalda .on.c1 .bulbo{fill:var(--bombilla);filter:url(#brillo-a)}
+#guirnalda .on.c2 .bulbo{fill:#FFF6E2;filter:url(#brillo-b)}
+#guirnalda .on.c3 .bulbo{fill:#3DBE6E;filter:url(#brillo-v)}
+#guirnalda .tuya .bulbo{fill:none;stroke:var(--bombilla);stroke-width:1.6;stroke-dasharray:3 3}
+@keyframes parpadeo{50%{opacity:.35}}
+#guirnalda .tuya{animation:parpadeo 1.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){#guirnalda .tuya{animation:none}}
+
+/* Secciones */
+.sec{padding:clamp(3.5rem,8vw,6rem) 0}
+.sec-h{font-size:clamp(2.6rem,7vw,4.6rem);margin-bottom:1rem}
+.sec-intro{max-width:36em;color:#D5D7E6;font-size:1.12rem;margin:0 0 2.5rem}
+
+/* Ritmos: carriles */
+.ritmos{background:var(--nieve);color:var(--noche)}
+.ritmos .sec-intro{color:#3A4060}
+.carriles{border-top:3px solid var(--noche)}
+.carril{display:grid;grid-template-columns:minmax(150px,240px) 1fr auto;gap:1rem 2rem;align-items:center;padding:1.6rem 0;border-bottom:2px dashed rgba(20,27,52,.3);position:relative}
+.carril:last-child{border-bottom:3px solid var(--noche)}
+.carril h3{font-size:clamp(2rem,4.6vw,3rem);color:var(--noche)}
+.carril p{margin:0;max-width:44em;color:#363C58}
+.carril .vel{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.2rem;color:var(--rojo);white-space:nowrap}
+.carril .mono{width:56px;height:56px;color:var(--noche)}
+@media (max-width:700px){.carril{grid-template-columns:1fr;gap:.4rem}.carril .vel{order:-1}}
+.ritmos-cierre{margin:2.2rem 0 0;font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:uppercase;line-height:1}
+.ritmos-cierre span{color:var(--rojo)}
+
+/* Plan de la tarde: línea temporal */
+.plan{background:linear-gradient(180deg,var(--noche) 0%, #18203F 100%)}
+.tiempo{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.tiempo::before{content:"";position:absolute;left:0;right:0;top:3.35rem;height:4px;background:repeating-linear-gradient(90deg,var(--nieve) 0 22px,transparent 22px 40px);opacity:.5}
+.tiempo li{position:relative;padding:0 1.4rem 0 0}
+.tiempo .h{font-family:var(--display);font-style:italic;font-weight:800;font-size:2.2rem;line-height:1;display:block;height:2.4rem;margin-bottom:1.6rem;color:var(--bombilla)}
+.tiempo .pt{position:absolute;top:3.05rem;left:0;width:16px;height:16px;border-radius:50%;background:var(--rojo);box-shadow:0 0 0 5px var(--noche)}
+.tiempo h3{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.6rem;text-transform:uppercase;line-height:1;margin:1rem 0 .5rem}
+.tiempo p{margin:0;color:#C9CCE0;font-size:1rem}
+@media (max-width:860px){
+  .tiempo{grid-template-columns:1fr;gap:1.8rem;padding-left:2rem}
+  .tiempo::before{left:6px;right:auto;top:0;bottom:0;width:4px;height:auto;background:repeating-linear-gradient(180deg,var(--nieve) 0 18px,transparent 18px 32px)}
+  .tiempo .pt{left:-2rem;top:.6rem}
+  .tiempo .h{margin-bottom:.2rem;height:auto}
+}
+
+/* Recorrido */
+.recorrido-grid > *,.sorteo-grid > *,.insc-grid > *{min-width:0}
+.recorrido-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:2.5rem;align-items:start}
+@media (max-width:900px){.recorrido-grid{grid-template-columns:1fr}}
+.mapa{position:relative;border-radius:var(--r-m);overflow:hidden;background:var(--asfalto);aspect-ratio:4/3;border:2px solid var(--linea)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}
+.mapa-pin{position:absolute;left:1rem;bottom:1rem;background:var(--rojo);color:#fff;font-weight:700;padding:.45rem .8rem;border-radius:var(--r-s);font-size:.95rem;box-shadow:0 6px 20px rgba(0,0,0,.35);pointer-events:none}
+.rec-botones{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;margin-top:1.6rem}
+.nota{color:var(--niebla);font-size:.95rem;margin:.6rem 0 0}
+.datos{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.2rem;margin:0 0 1.5rem}
+.datos dt{color:var(--niebla);font-weight:600}
+.datos dd{margin:0;font-weight:600}
+
+/* Sorteo — dorsales */
+.sorteo{background:var(--rojo);color:#fff;position:relative;overflow:hidden}
+.sorteo::after{content:"";position:absolute;inset:auto -10% -40% auto;width:60%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
+.sorteo .sec-intro{color:#FFE3E4}
+.sorteo-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center}
+@media (max-width:900px){.sorteo-grid{grid-template-columns:1fr}}
+.dorsales{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;position:relative;z-index:1}
+@media (max-width:520px){.dorsales{grid-template-columns:repeat(2,1fr)}}
+.dorsal{background:#fff;color:var(--noche);border-radius:5px;padding:.55rem .4rem .45rem;text-align:center;position:relative;box-shadow:0 8px 18px rgba(80,0,0,.28);transform:rotate(var(--rot,0deg))}
+.dorsal::before,.dorsal::after{content:"";position:absolute;top:6px;width:7px;height:7px;border-radius:50%;background:#C9CBD6;box-shadow:inset 0 1px 1px rgba(0,0,0,.35)}
+.dorsal::before{left:7px}.dorsal::after{right:7px}
+.dorsal .ev{font-size:.62rem;font-weight:700;color:var(--rojo);display:block;margin-top:.25rem;line-height:1.1}
+.dorsal b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(1.9rem,4vw,2.5rem);line-height:1;margin:.15rem 0}
+.dorsal .nom{display:block;font-size:.72rem;font-weight:700;min-height:1.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sorteo .btn-claro{color:var(--rojo-osc)}
+.sorteo-ganadores h3{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.8rem;line-height:1;text-transform:uppercase;margin:0 0 .6rem}
+
+/* Inscripción */
+.insc{background:var(--nieve);color:var(--noche)}
+.insc-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem;align-items:start}
+@media (max-width:960px){.insc-grid{grid-template-columns:1fr;gap:1.5rem}}
+.insc .sec-intro{color:#3A4060}
+.insc-lista{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.7rem}
+.insc-lista li{display:flex;gap:.7rem;align-items:flex-start;font-weight:500}
+.insc-lista svg{flex:none;width:22px;height:22px;color:var(--rojo);margin-top:2px}
+.form{background:#fff;border-radius:var(--r-m);padding:clamp(1.3rem,3.5vw,2.2rem);box-shadow:0 1px 0 rgba(20,27,52,.06),0 22px 50px rgba(20,27,52,.12);border-top:6px solid var(--rojo)}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:560px){.fila{grid-template-columns:1fr}}
+.campo{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.05rem}
+.campo label,.campo legend{font-weight:700;font-size:.97rem}
+.campo .ayuda{font-size:.88rem;color:#5A6080;font-weight:500}
+input[type=text],input[type=tel],input[type=number]{font:inherit;font-size:16px;padding:.8rem .9rem;border:2px solid #D3D5E0;border-radius:var(--r-s);background:#FBFBFD;color:var(--noche);width:100%;min-height:50px}
+input:focus{outline:none;border-color:var(--noche);background:#fff}
+input[aria-invalid=true]{border-color:var(--rojo)}
+fieldset{border:0;margin:0 0 1.05rem;padding:0;min-width:0}
+legend{padding:0;margin-bottom:.5rem}
+.opciones{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+@media (max-width:560px){.opciones{grid-template-columns:1fr}}
+.opcion{position:relative}
+.opcion input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opcion span{display:flex;flex-direction:column;gap:.1rem;padding:.75rem .9rem;border:2px solid #D3D5E0;border-radius:var(--r-s);cursor:pointer;height:100%;transition:border-color .15s, background-color .15s}
+.opcion span b{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1}
+.opcion span small{color:#5A6080;font-size:.86rem;line-height:1.3}
+.opcion input:checked + span{border-color:var(--rojo);background:#FFF1F1}
+.opcion input:focus-visible + span{outline:3px solid var(--bombilla);outline-offset:2px}
+.opciones.dos{grid-template-columns:1fr 1fr}
+.menor{background:#FFF7E3;border:2px solid #F3D48A;border-radius:var(--r-s);padding:1rem 1.1rem;margin-bottom:1.05rem}
+.menor[hidden]{display:none}
+.menor p{margin:0 0 .7rem;font-size:.97rem}
+.menor a.descarga{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;color:var(--rojo-osc);margin-bottom:.9rem}
+.subida{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.subida input[type=file]{font:inherit;font-size:.95rem;max-width:100%}
+.check{display:flex;gap:.7rem;align-items:flex-start;margin-bottom:.9rem;font-size:.97rem}
+.check input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--rojo);flex:none}
+details.rgpd{font-size:.88rem;color:#4A5070;margin:-.3rem 0 1.1rem 2.1rem}
+details.rgpd summary{cursor:pointer;font-weight:700;color:var(--noche)}
+details.rgpd p{margin:.5rem 0 0}
+.error{background:#FFE9EA;color:#8A0B12;border-left:4px solid var(--rojo);padding:.7rem .9rem;border-radius:4px;font-weight:600;margin-bottom:1rem}
+.error[hidden]{display:none}
+.form .btn{width:100%;justify-content:center;font-size:1.45rem;padding:1rem}
+.form .btn[disabled]{opacity:.6;cursor:progress}
+.cerrado{text-align:center;padding:1.5rem}
+.cerrado h3{font-family:var(--display);font-style:italic;font-weight:800;font-size:2rem;text-transform:uppercase;margin:0 0 .5rem}
+
+.ok{text-align:center;padding:.5rem 0}
+.ok .dorsal{max-width:230px;margin:0 auto 1.3rem;--rot:-3deg;padding:1rem .8rem .8rem}
+.ok .dorsal b{font-size:4.6rem}
+.ok .dorsal .ev{font-size:.78rem}
+.ok h3{font-family:var(--display);font-style:italic;font-weight:800;font-size:2.2rem;text-transform:uppercase;line-height:1;margin:0 0 .6rem}
+.ok p{margin:0 auto 1.2rem;max-width:30em;color:#3A4060}
+.ok .acciones{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}
+
+/* Cartel + compartir */
+.cartel-grid{display:grid;grid-template-columns:1fr auto;gap:1.5rem 3rem;align-items:end}
+.cartel-grid > *{min-width:0}
+.cartel-grid .sec-intro{margin-bottom:0}
+.cartel-img{display:none;width:min(300px,100%);height:auto;border-radius:10px;box-shadow:0 24px 50px rgba(0,0,0,.45);transform:rotate(-2deg);margin:0 auto 1.5rem}
+@media (max-width:900px){.cartel-grid{grid-template-columns:1fr}.cartel-img{display:block}}
+.compartir{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
+.btn-wa{background:#25D366;color:#0B3B1F;box-shadow:0 6px 0 #179247}
+
+/* Organizan */
+.org{background:#fff;color:var(--noche);padding:3rem 0}
+.org h2{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.6rem;text-transform:uppercase;margin:0 0 1.6rem;text-align:center}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:2.5rem 4rem}
+.logos figure{margin:0;text-align:center}
+.logos img{height:120px;width:auto;object-fit:contain}
+.logos img[src*="deportes"]{height:150px}
+.logos figcaption{font-size:.85rem;color:#5A6080;margin-top:.6rem;font-weight:600}
+@media (max-width:560px){.logos img{height:92px}.logos{gap:2rem 2.5rem}}
+
+footer{background:var(--noche);padding:2rem 0 calc(2rem + env(safe-area-inset-bottom));color:var(--niebla);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+footer a{color:var(--nieve)}
+
+/* Botón flotante móvil */
+.flotante{position:fixed;left:1rem;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom));z-index:25;display:none;justify-content:center;transition:opacity .2s, transform .2s}
+.flotante .btn{width:100%;justify-content:center;box-shadow:0 6px 0 var(--rojo-osc),0 14px 30px rgba(0,0,0,.4)}
+.flotante.oculto{opacity:0;transform:translateY(20px);pointer-events:none}
+@media (max-width:820px){.flotante{display:flex}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-strava" viewBox="0 0 24 24"><path fill="currentColor" d="M15.39 17.94 13.3 13.8h-3.07L15.39 24l5.15-10.2h-3.07M10.03 0 3.1 13.8h4.08l2.85-5.64 2.83 5.64h4.06z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.5 5 5 10-11"/></symbol>
+    <symbol id="i-run" viewBox="0 0 48 48"><g fill="currentColor"><circle cx="29" cy="7" r="4.2"/><path d="M20.5 14.5 28 13c1.6-.3 3 .3 3.9 1.6l3.6 5.6 6 1.8a2 2 0 1 1-1.1 3.8l-6.7-2a2 2 0 0 1-1.1-.8l-1.6-2.6-2.7 7.4 5.6 4.5c.5.4.8 1 .8 1.6l.6 9.1a2.1 2.1 0 0 1-4.2.3l-.5-8.2-7.1-5.5-2.7 6.4c-.3.7-1 1.2-1.7 1.3l-8.6 1.3a2.1 2.1 0 1 1-.6-4.2l7.4-1.1 6.6-16-3.2.6-3.5 5a2 2 0 1 1-3.3-2.4l4-5.7c.3-.5.9-.8 1.5-.9Z"/></g></symbol>
+    <symbol id="i-walk" viewBox="0 0 48 48"><g fill="currentColor"><circle cx="26" cy="6.5" r="4"/><path d="M21.6 13.2c.9-.6 2.1-.8 3.2-.4l2 .7c1 .4 1.8 1.2 2.2 2.2l2.7 6.6 4.6 2.4a2 2 0 1 1-1.9 3.6l-5.3-2.8c-.4-.2-.8-.6-1-1.1l-.9-2.2-1.9 7.9 4.6 5.3c.3.4.5.8.6 1.3l1.2 9.4a2.1 2.1 0 0 1-4.2.6l-1.1-8.8-4.6-5.2-1.9 6.6-4.6 7.5a2.1 2.1 0 1 1-3.6-2.2l4.3-7 3.5-14.6-2.4 1.5-1.6 5.8a2 2 0 1 1-3.9-1.1l1.8-6.6c.1-.5.5-.9.9-1.2Z"/></g></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V9h5.5M8 13h8v1.6H8zm0 3.4h8V18H8z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.3-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.5Z"/></symbol>
+    <symbol id="i-earth" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm-9.5 9.5h19M12 2.5c2.6 2.7 3.9 5.9 3.9 9.5s-1.3 6.8-3.9 9.5M12 2.5C9.4 5.2 8.1 8.4 8.1 12s1.3 6.8 3.9 9.5"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Social Run San Miguel de Salinas, inicio">
+      <img src="assets/logo-ayuntamiento.png" alt="">
+      <span>Social <b>Run</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#ritmos">Tu ritmo</a>
+      <a href="#plan">La tarde</a>
+      <a href="#recorrido">Recorrido</a>
+      <a href="#sorteo">Sorteo</a>
+    </nav>
+    <a class="btn btn-rojo" href="#inscripcion"><span>Inscribirme</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="hero" aria-labelledby="titulo">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-fecha" aria-label="Jueves 19 de noviembre a las 19:30">
+          <span class="dia dia-w"><span>Jueves 19 nov</span></span>
+          <span class="hora-w"><span class="hora">19:30 h</span></span>
+        </div>
+        <h1 class="dsp" id="titulo">Social<span class="l2">Run</span></h1>
+        <p class="hero-sub">San Miguel de Salinas</p>
+        <p class="hero-p">Una vuelta en grupo al recorrido de la Carrera Solidaria de Navidad 2026, de noche y con las luces del pueblo encendidas. Sin cronómetro, sin clasificación y sin dejar a nadie atrás. Al llegar sorteamos 10 dorsales para la carrera del 20 de diciembre.</p>
+        <p class="hero-lugar"><svg aria-hidden="true"><use href="#i-pin"/></svg>Salida desde el Ayuntamiento de San Miguel de Salinas</p>
+        <div class="hero-ctas">
+          <a class="btn btn-rojo" href="#inscripcion"><span>Me apunto</span></a>
+          <a class="btn btn-strava" href="https://strava.app.link/pv3jFqhtV7b" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-strava"/></svg><span>Unirme en Strava</span></a>
+        </div>
+        <div class="cuenta" id="cuenta" aria-live="off">
+          <p id="cuenta-txt">Salimos en</p>
+          <div class="cuenta-num">
+            <div><b id="cd-d">--</b><small>días</small></div>
+            <div><b id="cd-h">--</b><small>horas</small></div>
+            <div><b id="cd-m">--</b><small>min</small></div>
+          </div>
+        </div>
+      </div>
+      <figure class="hero-cartel">
+        <img src="assets/cartel-social-run.jpg" alt="Cartel de la Social Run San Miguel de Salinas: 19 de noviembre a las 19:30 h, salida en el Ayuntamiento" width="1055" height="1491">
+      </figure>
+    </div>
+    <div class="calle" aria-hidden="true">
+      <svg class="corredor"><use href="#i-run"/></svg>
+    </div>
+  </section>
+
+  <section class="plazas" aria-labelledby="plazas-t">
+    <div class="wrap">
+      <div class="plazas-head">
+        <div>
+          <h2 class="dsp" id="plazas-t">Cada inscripción enciende una luz</h2>
+          <p class="plazas-txt" id="plazas-txt">Las plazas son limitadas. Cuando la guirnalda esté entera, se cierran las inscripciones.</p>
+        </div>
+        <div class="plazas-cifra" aria-live="polite"><span id="n-insc">0</span><small>/ <span id="n-max" style="color:inherit">100</span> plazas</small></div>
+      </div>
+      <svg id="guirnalda" role="img" aria-label="Guirnalda de plazas"></svg>
+    </div>
+  </section>
+
+  <section class="sec ritmos" id="ritmos" aria-labelledby="ritmos-t">
+    <div class="wrap">
+      <h2 class="dsp sec-h" id="ritmos-t">No importa tu ritmo</h2>
+      <p class="sec-intro">No hace falta haber corrido nunca. El grupo se organiza por ritmos y siempre hay alguien a tu paso. Elige el tuyo al inscribirte para que podamos organizarnos.</p>
+      <div class="carriles">
+        <div class="carril">
+          <h3 class="dsp">Paseo</h3>
+          <p>Caminando a buen paso, charlando, conociendo el recorrido. Ideal si vienes con peques, si te estás iniciando o si quieres hacer la marcha de 2,5 km en diciembre.</p>
+          <span class="vel">Caminando</span>
+        </div>
+        <div class="carril">
+          <h3 class="dsp">Trote</h3>
+          <p>Corriendo suave, a ritmo de conversación. Si sales a correr de vez en cuando o estás preparando tu primer 5K, este es tu grupo.</p>
+          <span class="vel">Corriendo suave</span>
+        </div>
+        <div class="carril">
+          <h3 class="dsp">Ritmo de carrera</h3>
+          <p>Para quien ya corre con regularidad y quiere probar el recorrido a ritmo, ver las curvas y saber dónde apretar el 20 de diciembre.</p>
+          <span class="vel">A ritmo</span>
+        </div>
+      </div>
+      <p class="ritmos-cierre">Lo único obligatorio: <span>venir con ganas.</span></p>
+    </div>
+  </section>
+
+  <section class="sec plan" id="plan" aria-labelledby="plan-t">
+    <div class="wrap">
+      <h2 class="dsp sec-h" id="plan-t">Así será la tarde</h2>
+      <p class="sec-intro">Una hora larga entre amigos, vecinos y gente que acabas de conocer.</p>
+      <ol class="tiempo">
+        <li><span class="h">19:15</span><span class="pt" aria-hidden="true"></span><h3>Llegada</h3><p>Nos vemos en la puerta del Ayuntamiento. Calentamos juntos y nos repartimos por ritmos.</p></li>
+        <li><span class="h">19:30</span><span class="pt" aria-hidden="true"></span><h3>Salida</h3><p>Salimos todos a la vez. Cada grupo con su ritmo, con gente del C.A. Puerto Torrevieja acompañando.</p></li>
+        <li><span class="h">En ruta</span><span class="pt" aria-hidden="true"></span><h3>El recorrido</h3><p>Conocemos las calles por las que pasará la Carrera Solidaria de Navidad del 20 de diciembre.</p></li>
+        <li><span class="h">Meta</span><span class="pt" aria-hidden="true"></span><h3>Sorteo</h3><p>Al terminar sorteamos 10 dorsales para la carrera o la marcha entre los inscritos que hayan participado.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="recorrido" aria-labelledby="rec-t">
+    <div class="wrap recorrido-grid">
+      <div>
+        <h2 class="dsp sec-h" id="rec-t">El recorrido</h2>
+        <p class="sec-intro" style="margin-bottom:1.6rem">Es el mismo que el de la Carrera Solidaria de Navidad 2026. Hacerlo antes con el grupo es la mejor manera de llegar tranquilo el día de la carrera.</p>
+        <dl class="datos">
+          <dt>Salida</dt><dd>Ayuntamiento de San Miguel de Salinas</dd>
+          <dt>Día</dt><dd>Jueves 19 de noviembre de 2026</dd>
+          <dt>Hora</dt><dd>19:30 h</dd>
+          <dt>Precio</dt><dd>Gratis</dd>
+        </dl>
+        <div class="rec-botones">
+          <a class="btn btn-claro" href="https://earth.google.com/earth/d/1gYQ9HR7woP8zO4H3XUF7rfSoqUxuKyKk?usp=sharing" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-earth"/></svg><span>Ver recorrido en 3D</span></a>
+          <a class="btn btn-strava" href="https://strava.app.link/pv3jFqhtV7b" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-strava"/></svg><span>Ruta en Strava</span></a>
+        </div>
+        <p class="nota">El recorrido en 3D se abre en Google Earth; en el móvil funciona mejor con la app instalada.</p>
+      </div>
+      <div class="mapa">
+        <iframe title="Mapa del punto de salida: Ayuntamiento de San Miguel de Salinas" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Ayuntamiento%20de%20San%20Miguel%20de%20Salinas&z=16&output=embed"></iframe>
+        <span class="mapa-pin">Salida · 19:30 h</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sorteo" id="sorteo" aria-labelledby="sorteo-t">
+    <div class="wrap sorteo-grid">
+      <div>
+        <h2 class="dsp sec-h" id="sorteo-t">10 dorsales en juego</h2>
+        <p class="sec-intro">Al terminar la Social Run sorteamos 10 dorsales para la 5K Carrera o la 2,5K Marcha de Navidad Solidaria San Miguel de Salinas 2026, el domingo 20 de diciembre. Entran en el sorteo todas las personas inscritas que participen.</p>
+        <div id="ganadores-pub" class="sorteo-ganadores" hidden>
+          <h3>Ya tenemos ganadores</h3>
+          <p style="margin:0 0 1rem">¡Enhorabuena! La organización se pondrá en contacto con cada persona ganadora.</p>
+        </div>
+        <a class="btn btn-claro" href="https://carreramarchanavidad2026.netlify.app/" target="_blank" rel="noopener"><span>Web de la Carrera de Navidad</span></a>
+        <p class="nota" style="color:#FFD2D4">¿No quieres esperar al sorteo? Puedes inscribirte ya en la carrera o la marcha desde su web.</p>
+      </div>
+      <div class="dorsales" id="dorsales" aria-label="Los 10 dorsales del sorteo"></div>
+    </div>
+  </section>
+
+  <section class="sec insc" id="inscripcion" aria-labelledby="insc-t">
+    <div class="wrap insc-grid">
+      <div>
+        <h2 class="dsp sec-h" id="insc-t">Inscríbete</h2>
+        <p class="sec-intro">Gratis y en un minuto. Inscribirte nos ayuda a organizar los grupos y te da una papeleta para el sorteo de dorsales.</p>
+        <ul class="insc-lista">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Abierta a todas las edades y niveles</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Menores de 18: autorización firmada en PDF</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Menores de 14: acompañados de una persona adulta</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Una inscripción por persona</li>
+        </ul>
+        <a class="btn btn-strava" href="https://strava.app.link/pv3jFqhtV7b" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-strava"/></svg><span>Únete también en Strava</span></a>
+      </div>
+
+      <div class="form" id="form-caja">
+        <form id="form" novalidate>
+          <div class="fila">
+            <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="given-name" required maxlength="60"></div>
+            <div class="campo"><label for="apellidos">Apellidos</label><input id="apellidos" name="apellidos" type="text" autocomplete="family-name" required maxlength="90"></div>
+          </div>
+          <div class="fila">
+            <div class="campo"><label for="edad">Edad</label><input id="edad" name="edad" type="number" inputmode="numeric" min="4" max="99" required></div>
+            <div class="campo"><label for="telefono">Teléfono de contacto</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required maxlength="16"><span class="ayuda">Si eres menor, el de tu madre, padre o tutor/a.</span></div>
+          </div>
+
+          <div class="menor" id="menor" hidden>
+            <p><b>Eres menor de edad.</b> Descarga la autorización, que la firme tu madre, padre o tutor/a, y súbela aquí en PDF.</p>
+            <a class="descarga" href="autorizacion-menores-social-run.pdf" download><svg width="20" height="20" aria-hidden="true"><use href="#i-pdf"/></svg>Descargar autorización (PDF)</a>
+            <div class="campo" style="margin:0">
+              <label for="pdf">Autorización firmada</label>
+              <input id="pdf" name="pdf" type="file" accept="application/pdf,.pdf">
+              <span class="ayuda">Solo PDF, hasta 4 MB.</span>
+            </div>
+          </div>
+
+          <fieldset class="campo">
+            <legend>Tu ritmo</legend>
+            <div class="opciones">
+              <label class="opcion"><input type="radio" name="nivel" value="paseo" required><span><b>Paseo</b><small>Caminando</small></span></label>
+              <label class="opcion"><input type="radio" name="nivel" value="trote"><span><b>Trote</b><small>Corriendo suave</small></span></label>
+              <label class="opcion"><input type="radio" name="nivel" value="ritmo"><span><b>Ritmo</b><small>Ritmo de carrera</small></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="campo">
+            <legend>Fotos y vídeos de la actividad</legend>
+            <span class="ayuda" style="margin:-.3rem 0 .5rem">¿Autorizas que el Ayuntamiento publique imágenes en las que aparezcas en sus canales oficiales y redes sociales?</span>
+            <div class="opciones dos">
+              <label class="opcion"><input type="radio" name="imagen" value="si" required><span><b>Sí, autorizo</b></span></label>
+              <label class="opcion"><input type="radio" name="imagen" value="no"><span><b>No autorizo</b></span></label>
+            </div>
+          </fieldset>
+
+          <label class="check"><input type="checkbox" id="privacidad" required><span>He leído y acepto el tratamiento de mis datos para gestionar la actividad y el sorteo.</span></label>
+          <details class="rgpd">
+            <summary>Información sobre protección de datos</summary>
+            <p><b>Responsable:</b> Ayuntamiento de San Miguel de Salinas (Concejalía de Deportes). <b>Finalidad:</b> gestionar la inscripción en la Social Run, organizar los grupos, contactar en caso necesario y realizar el sorteo de dorsales. <b>Legitimación:</b> consentimiento de la persona interesada o de su representante legal. <b>Conservación:</b> hasta finalizar la Carrera Solidaria de Navidad 2026, salvo obligación legal. <b>Destinatarios:</b> no se cederán datos a terceros. <b>Derechos:</b> acceso, rectificación, supresión, oposición, limitación y portabilidad ante el Ayuntamiento de San Miguel de Salinas, conforme al Reglamento (UE) 2016/679 y la Ley Orgánica 3/2018.</p>
+          </details>
+
+          <div class="error" id="error" role="alert" hidden></div>
+          <button class="btn btn-rojo" type="submit" id="enviar"><span>Inscribirme</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="cartel-t">
+    <div class="wrap cartel-grid">
+      <div>
+        <img class="cartel-img" src="assets/cartel-social-run.jpg" alt="Cartel de la Social Run San Miguel de Salinas" loading="lazy" width="1055" height="1491">
+        <h2 class="dsp sec-h" id="cartel-t">Mejor en compañía</h2>
+        <p class="sec-intro">¿Tienes a alguien que lleva tiempo diciendo que quiere empezar a correr? Esta es su tarde. Pásale la web o el cartel.</p>
+      </div>
+      <div class="compartir" style="margin-top:0">
+          <a class="btn btn-wa" id="wa" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>Enviar por WhatsApp</span></a>
+          <a class="btn btn-linea" href="assets/cartel-social-run.jpg" download="cartel-social-run-san-miguel.jpg"><span>Descargar cartel</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="org" aria-labelledby="org-t">
+    <div class="wrap">
+      <h2 id="org-t">Organizan</h2>
+      <div class="logos">
+        <figure><img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de San Miguel de Salinas"><figcaption>Ayuntamiento de San Miguel de Salinas</figcaption></figure>
+        <figure><img src="assets/logo-deportes.png" alt="Concejalía de Deportes de San Miguel de Salinas"><figcaption>Concejalía de Deportes</figcaption></figure>
+        <figure><img src="assets/logo-ca-puerto-torrevieja.png" alt="Club de Atletismo Puerto Torrevieja"><figcaption>C.A. Puerto Torrevieja</figcaption></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Social Run San Miguel de Salinas 2026 · Concejalía de Deportes</span>
+    <a href="https://carreramarchanavidad2026.netlify.app/" target="_blank" rel="noopener">Carrera y Marcha Solidaria de Navidad 2026</a>
+  </div>
+</footer>
+
+<div class="flotante" id="flotante"><a class="btn btn-rojo" href="#inscripcion"><span>Me apunto gratis</span></a></div>
+
+<script>
+(() => {
+  const API = "/api/inscripcion";
+  const EVENTO = new Date("2026-11-19T19:30:00+01:00");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let estado = { inscritos: 0, max: 100, abierto: true };
+  let primeraVez = true;
+
+  /* ---- Cuenta atrás ---- */
+  const pad = (n) => String(n).padStart(2, "0");
+  function cuenta() {
+    const diff = EVENTO - new Date();
+    if (diff <= 0) {
+      const fin = new Date(EVENTO.getTime() + 2 * 3600e3);
+      document.getElementById("cuenta-txt").textContent = new Date() < fin ? "¡Estamos corriendo!" : "Gracias por venir";
+      document.querySelector(".cuenta-num").hidden = true;
+      return;
+    }
+    document.getElementById("cd-d").textContent = Math.floor(diff / 864e5);
+    document.getElementById("cd-h").textContent = pad(Math.floor(diff / 36e5) % 24);
+    document.getElementById("cd-m").textContent = pad(Math.floor(diff / 6e4) % 60);
+  }
+  cuenta(); setInterval(cuenta, 30000);
+
+  /* ---- Guirnalda ---- */
+  const svg = document.getElementById("guirnalda");
+  const NS = "http://www.w3.org/2000/svg";
+  function dibujarGuirnalda(animar) {
+    const W = svg.parentElement.clientWidth;
+    const total = Math.max(estado.max, 1);
+    const paso = W < 520 ? 22 : 30;
+    const porFila = Math.max(8, Math.min(total, Math.floor(W / paso)));
+    const filas = Math.ceil(total / porFila);
+    const altoFila = W < 520 ? 46 : 58;
+    const comba = W < 520 ? 12 : 16;
+    const H = filas * altoFila + 12;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.setAttribute("height", H);
+    svg.innerHTML = `<defs>
+      <filter id="brillo-r" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="brillo-a" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="brillo-b" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="brillo-v" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>`;
+    const r = W < 520 ? 4.6 : 6;
+    let idx = 0;
+    const bulbos = [];
+    for (let f = 0; f < filas; f++) {
+      const y0 = f * altoFila + 8;
+      const n = Math.min(porFila, total - f * porFila);
+      const x0 = 6, x1 = W - 6;
+      const sw = (x1 - x0);
+      // cable en dos combas por fila
+      const combas = W < 520 ? 1 : 2;
+      const yAt = (x) => { const t = ((x - x0) / sw) * combas; const u = t - Math.floor(t); return y0 + comba * 4 * u * (1 - u); };
+      let d = `M${x0},${y0}`;
+      for (let k = 1; k <= 60; k++) { const x = x0 + (sw * k) / 60; d += ` L${x.toFixed(1)},${yAt(x).toFixed(1)}`; }
+      const cable = document.createElementNS(NS, "path"); cable.setAttribute("d", d); cable.setAttribute("class", "cable"); svg.appendChild(cable);
+      for (let i = 0; i < n; i++) {
+        const x = x0 + (sw * (i + 0.5)) / porFila;
+        const y = yAt(x);
+        const g = document.createElementNS(NS, "g");
+        g.setAttribute("class", "luz c" + (idx % 4));
+        g.setAttribute("transform", `translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${(i % 2 ? 6 : -6)})`);
+        g.innerHTML = `<rect class="casq" x="${-r * .45}" y="1" width="${r * .9}" height="${r * .8}" rx="1"/><ellipse class="bulbo" cx="0" cy="${r * 1.8 + 1}" rx="${r * .78}" ry="${r * 1.1}"/>`;
+        svg.appendChild(g); bulbos.push(g); idx++;
+      }
+    }
+    const lit = Math.min(estado.inscritos, total);
+    bulbos.forEach((b, i) => {
+      if (i < lit) {
+        if (animar && !reduce) setTimeout(() => b.classList.add("on"), 250 + i * Math.max(8, Math.min(35, 1600 / Math.max(lit, 1))));
+        else b.classList.add("on");
+      } else if (i === lit && estado.abierto) b.classList.add("tuya");
+    });
+    svg.setAttribute("aria-label", `${lit} de ${total} plazas ocupadas`);
+  }
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => dibujarGuirnalda(false), 150); });
+
+  function contarHasta(el, fin) {
+    if (reduce) { el.textContent = fin; return; }
+    const ini = parseInt(el.textContent, 10) || 0, t0 = performance.now(), dur = 1400;
+    const step = (t) => { const p = Math.min(1, (t - t0) / dur); el.textContent = Math.round(ini + (fin - ini) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+
+  function pintarEstado() {
+    contarHasta(document.getElementById("n-insc"), estado.inscritos);
+    document.getElementById("n-max").textContent = estado.max;
+    const libres = Math.max(estado.max - estado.inscritos, 0);
+    document.getElementById("plazas-txt").textContent = !estado.abierto
+      ? "La guirnalda está completa: las inscripciones están cerradas. ¡Gracias!"
+      : libres <= 15
+        ? `Quedan solo ${libres} plazas. Cuando la guirnalda esté entera, se cierran las inscripciones.`
+        : `Quedan ${libres} plazas libres. Cuando la guirnalda esté entera, se cierran las inscripciones.`;
+    dibujarGuirnalda(primeraVez); primeraVez = false;
+    if (!estado.abierto && !document.getElementById("ok")) mostrarCerrado();
+    pintarDorsales(estado.ganadores);
+  }
+
+  async function cargar() {
+    try {
+      const r = await fetch(API, { cache: "no-store" });
+      if (!r.ok) throw 0;
+      estado = await r.json();
+    } catch { /* sin conexión: dejamos los valores por defecto */ }
+    pintarEstado();
+  }
+  cargar(); setInterval(() => { if (!document.hidden) fetch(API, { cache: "no-store" }).then(r => r.json()).then(d => { const cambio = d.inscritos !== estado.inscritos || JSON.stringify(d.ganadores) !== JSON.stringify(estado.ganadores); estado = d; if (cambio) pintarEstado(); }).catch(() => {}); }, 45000);
+
+  /* ---- Dorsales del sorteo ---- */
+  function pintarDorsales(ganadores) {
+    const cont = document.getElementById("dorsales");
+    const rots = [-4, 3, -2, 5, -3, 2, -5, 3, -1, 4];
+    cont.innerHTML = "";
+    for (let i = 0; i < 10; i++) {
+      const g = ganadores && ganadores[i];
+      const d = document.createElement("div");
+      d.className = "dorsal"; d.style.setProperty("--rot", rots[i] + "deg");
+      d.innerHTML = `<span class="ev">Navidad 2026</span><b>${pad(i + 1)}</b><span class="nom"></span>`;
+      d.querySelector(".nom").textContent = g ? `${g.nombre} ${g.inicial}.` : "¿Tuyo?";
+      cont.appendChild(d);
+    }
+    document.getElementById("ganadores-pub").hidden = !(ganadores && ganadores.length);
+  }
+
+  /* ---- Formulario ---- */
+  const form = document.getElementById("form");
+  const edad = document.getElementById("edad");
+  const menorBox = document.getElementById("menor");
+  const pdf = document.getElementById("pdf");
+  const errorBox = document.getElementById("error");
+  const enviar = document.getElementById("enviar");
+
+  edad.addEventListener("input", () => {
+    const v = parseInt(edad.value, 10);
+    menorBox.hidden = !(v > 0 && v < 18);
+  });
+
+  function fallo(msg, campo) {
+    errorBox.textContent = msg; errorBox.hidden = false;
+    form.querySelectorAll("[aria-invalid]").forEach(e => e.removeAttribute("aria-invalid"));
+    if (campo) { campo.setAttribute("aria-invalid", "true"); campo.focus(); }
+    else errorBox.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  }
+
+  const leerBase64 = (file) => new Promise((ok, ko) => {
+    const fr = new FileReader();
+    fr.onload = () => ok(String(fr.result).split(",")[1]);
+    fr.onerror = ko; fr.readAsDataURL(file);
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBox.hidden = true;
+    const f = form.elements;
+    const datos = {
+      nombre: f.nombre.value.trim(), apellidos: f.apellidos.value.trim(),
+      edad: parseInt(f.edad.value, 10), telefono: f.telefono.value.trim(),
+      nivel: f.nivel.value, imagen: f.imagen.value,
+      privacidad: document.getElementById("privacidad").checked,
+    };
+    if (datos.nombre.length < 2) return fallo("Escribe tu nombre.", f.nombre);
+    if (datos.apellidos.length < 2) return fallo("Escribe tus apellidos.", f.apellidos);
+    if (!(datos.edad >= 4 && datos.edad <= 99)) return fallo("Indica tu edad (entre 4 y 99 años).", f.edad);
+    if (datos.telefono.replace(/\D/g, "").length < 9) return fallo("Escribe un teléfono de al menos 9 cifras.", f.telefono);
+    if (datos.edad < 18) {
+      const file = pdf.files[0];
+      if (!file) return fallo("Al ser menor de edad, adjunta la autorización firmada en PDF.", pdf);
+      if (!/\.pdf$/i.test(file.name) && file.type !== "application/pdf") return fallo("La autorización tiene que ser un archivo PDF.", pdf);
+      if (file.size > 4 * 1024 * 1024) return fallo("El PDF pesa más de 4 MB. Reduce su tamaño y vuelve a subirlo.", pdf);
+      datos.pdf = { name: file.name, data: await leerBase64(file) };
+    }
+    if (!datos.nivel) return fallo("Elige tu ritmo: paseo, trote o ritmo de carrera.");
+    if (!datos.imagen) return fallo("Indica si autorizas o no el uso de imágenes.");
+    if (!datos.privacidad) return fallo("Para inscribirte necesitas aceptar el tratamiento de datos.", document.getElementById("privacidad"));
+
+    enviar.disabled = true; enviar.firstElementChild.textContent = "Enviando…";
+    try {
+      const r = await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(datos) });
+      const res = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        if (res.numero) return exito(res.numero, datos.nombre, true);
+        throw new Error(res.error || "No se ha podido completar la inscripción. Inténtalo de nuevo en unos minutos.");
+      }
+      estado.inscritos = res.inscritos; estado.max = res.max; estado.abierto = res.inscritos < res.max;
+      exito(res.numero, datos.nombre, false);
+      pintarEstado();
+    } catch (err) {
+      fallo(err.message || "No se ha podido completar la inscripción.");
+    } finally {
+      enviar.disabled = false; enviar.firstElementChild.textContent = "Inscribirme";
+    }
+  });
+
+  function exito(numero, nombre, repetida) {
+    const caja = document.getElementById("form-caja");
+    caja.innerHTML = `<div class="ok" id="ok" tabindex="-1">
+      <div class="dorsal"><span class="ev">Social Run 2026</span><b>${numero}</b><span class="nom"></span></div>
+      <h3>${repetida ? "Ya estabas dentro" : "¡Estás dentro!"}</h3>
+      <p>Tu número de participante es el <b>${numero}</b>. Te esperamos el jueves 19 de noviembre a las 19:15 en el Ayuntamiento. Al terminar, entras en el sorteo de los 10 dorsales.</p>
+      <div class="acciones">
+        <a class="btn btn-strava" href="https://strava.app.link/pv3jFqhtV7b" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-strava"/></svg><span>Unirme en Strava</span></a>
+        <button class="btn btn-linea" type="button" id="otra" style="color:var(--noche);box-shadow:inset 0 0 0 2px #C7CAD8"><span>Inscribir a otra persona</span></button>
+      </div></div>`;
+    caja.querySelector(".nom").textContent = nombre;
+    const ok = document.getElementById("ok"); ok.focus({ preventScroll: true });
+    ok.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    document.getElementById("otra").addEventListener("click", () => location.reload());
+  }
+
+  function mostrarCerrado() {
+    document.getElementById("form-caja").innerHTML = `<div class="cerrado"><h3>Plazas completas</h3><p>Se han cubierto todas las plazas de la Social Run. Aún puedes apuntarte a la carrera o la marcha de Navidad del 20 de diciembre.</p><a class="btn btn-rojo" href="https://carreramarchanavidad2026.netlify.app/" target="_blank" rel="noopener"><span>Ir a la Carrera de Navidad</span></a></div>`;
+  }
+
+  /* ---- Compartir ---- */
+  const msg = `Social Run San Miguel de Salinas: jueves 19 de noviembre a las 19:30 h desde el Ayuntamiento. Gratis y para cualquier ritmo, con sorteo de 10 dorsales para la Carrera de Navidad. Apúntate: ${location.origin}${location.pathname}`;
+  document.getElementById("wa").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+
+  /* ---- Botón flotante: se oculta cuando el formulario está a la vista ---- */
+  const flot = document.getElementById("flotante");
+  const vistos = new Set();
+  const io = new IntersectionObserver((ents) => {
+    ents.forEach(e => e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target));
+    flot.classList.toggle("oculto", vistos.size > 0);
+  }, { threshold: 0.05 });
+  io.observe(document.getElementById("inscripcion"));
+  io.observe(document.querySelector(".hero-ctas"));
+})();
+</script>
+</body>
+</html>
