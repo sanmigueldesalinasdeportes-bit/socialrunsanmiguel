@@ -263,6 +263,17 @@ details.rgpd p{margin:.5rem 0 0}
 .compartir{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
 .btn-wa{background:#25D366;color:#0B3B1F;box-shadow:0 6px 0 #179247}
 
+/* Contacto */
+.contacto{background:var(--asfalto);padding:clamp(2.5rem,6vw,3.5rem) 0;border-top:1px solid var(--linea)}
+.contacto-in{display:grid;grid-template-columns:1fr auto;gap:1.5rem 3rem;align-items:center}
+.contacto-in > *{min-width:0}
+.contacto h2{font-size:clamp(2.2rem,5.5vw,3.4rem);margin-bottom:.5rem}
+.contacto p{margin:0;color:#D5D7E6;max-width:32em}
+.contacto-dato{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem}
+.contacto-dato > span{color:var(--niebla);font-weight:600}
+.contacto-dato .tel{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(2.2rem,6vw,3rem);line-height:1;text-decoration:none;margin-bottom:.8rem;font-variant-numeric:tabular-nums}
+@media (max-width:760px){.contacto-in{grid-template-columns:1fr}}
+
 /* Organizan */
 .org{background:#fff;color:var(--noche);padding:3rem 0}
 .org h2{font-family:var(--display);font-style:italic;font-weight:800;font-size:1.6rem;text-transform:uppercase;margin:0 0 1.6rem;text-align:center}
@@ -394,7 +405,7 @@ footer a{color:var(--nieve)}
       <p class="sec-intro">Una hora larga entre amigos, vecinos y gente que acabas de conocer.</p>
       <ol class="tiempo">
         <li><span class="h">19:15</span><span class="pt" aria-hidden="true"></span><h3>Llegada</h3><p>Nos vemos en la puerta del Ayuntamiento. Calentamos juntos y nos repartimos por ritmos.</p></li>
-        <li><span class="h">19:30</span><span class="pt" aria-hidden="true"></span><h3>Salida</h3><p>Salimos todos a la vez. Cada grupo con su ritmo, con gente del C.A. Puerto Torrevieja acompañando.</p></li>
+        <li><span class="h">19:30</span><span class="pt" aria-hidden="true"></span><h3>Salida</h3><p>Salimos todos a la vez y cada grupo va a su ritmo, siempre acompañado.</p></li>
         <li><span class="h">En ruta</span><span class="pt" aria-hidden="true"></span><h3>El recorrido</h3><p>Conocemos las calles por las que pasará la Carrera Solidaria de Navidad del 20 de diciembre.</p></li>
         <li><span class="h">Meta</span><span class="pt" aria-hidden="true"></span><h3>Sorteo</h3><p>Al terminar sorteamos 10 dorsales para la carrera o la marcha entre los inscritos que hayan participado.</p></li>
       </ol>
@@ -522,13 +533,26 @@ footer a{color:var(--nieve)}
     </div>
   </section>
 
+  <section class="contacto" aria-labelledby="contacto-t">
+    <div class="wrap contacto-in">
+      <div>
+        <h2 class="dsp" id="contacto-t">¿Tienes dudas?</h2>
+        <p>Escríbenos y te contamos todo lo que necesites sobre la Social Run.</p>
+      </div>
+      <div class="contacto-dato">
+        <span>Área de Deportes Municipal</span>
+        <a class="tel" href="tel:+34673501180">673 501 180</a>
+        <a class="btn btn-wa" href="https://wa.me/34673501180?text=Hola%2C%20quer%C3%ADa%20informaci%C3%B3n%20sobre%20la%20Social%20Run%20San%20Miguel%20de%20Salinas" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>Escribir por WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+
   <section class="org" aria-labelledby="org-t">
     <div class="wrap">
       <h2 id="org-t">Organizan</h2>
       <div class="logos">
         <figure><img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de San Miguel de Salinas"><figcaption>Ayuntamiento de San Miguel de Salinas</figcaption></figure>
         <figure><img src="assets/logo-deportes.png" alt="Concejalía de Deportes de San Miguel de Salinas"><figcaption>Concejalía de Deportes</figcaption></figure>
-        <figure><img src="assets/logo-ca-puerto-torrevieja.png" alt="Club de Atletismo Puerto Torrevieja"><figcaption>C.A. Puerto Torrevieja</figcaption></figure>
       </div>
     </div>
   </section>
@@ -537,6 +561,7 @@ footer a{color:var(--nieve)}
 <footer>
   <div class="wrap">
     <span>Social Run San Miguel de Salinas 2026 · Concejalía de Deportes</span>
+    <span>Más información: Área de Deportes Municipal · <a href="https://wa.me/34673501180" target="_blank" rel="noopener">673 501 180</a></span>
     <a href="https://carreramarchanavidad2026.netlify.app/" target="_blank" rel="noopener">Carrera y Marcha Solidaria de Navidad 2026</a>
   </div>
 </footer>
